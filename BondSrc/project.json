@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "debugType": "portable",
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+    "ServiceStack.Interfaces.Core":"1.0.18",
+     "ServiceStack.Common.Core":"1.0.18"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0"
+        }
+      },
+      "imports": "dnxcore50"
+    }
+  }
+}
