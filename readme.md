@@ -140,25 +140,26 @@ tests projects, but it will not restore NuGet packages.
 
 ## Coding challenges: Approach
 
-I created BondRun class that contains all the functions used in the challenge including the main function.
-I created the Bond Class that holds a Bond with following properties.
+* Created BondRun class that contains all the functions used in the challenge including the main function.
+* Created the Bond Class that holds a Bond with following properties.
         string bondID 
         string bondType 
-        double bondTerm 
-        double bondYield
+        double bondTerm  -- Used double type for holding years
+        double bondYield -- Used double type for holding Yield
 
-I used ServiceStack library for high performance CSV import from a file SampleInput.CSV if user didnt specify any file. 
-The csv import is considered first class format in this library so it is able to import large CSV files easily.
+* Used ServiceStack library for high performance CSV import from a file SampleInput.CSV if user didnt specify any file. 
+  The csv import is considered first class format in this library so it is able to import large CSV files easily.
 
-I created BondPoco class to take the objects deserialized from CSV as CSV data needs to be formatted before being transferred to Bond object. 
-I used String.Replace function to take out `years` and `%` from CSV as it seems to be best performing method out of all 
-three methods (String.Replace(), StringBuilder.Replace() and regex.replace()) in general usage. Refer here 
-(https://blogs.msdn.microsoft.com/debuggingtoolbox/2008/04/02/comparing-regex-replace-string-replace-and-stringbuilder-replace-which-has-better-performance/)
+* Created BondPoco class to take the objects deserialized from CSV as CSV data needs to be formatted before being transferred   to Bond object. 
+
+ I used String.Replace function to take out `years` and `%` from CSV as it seems to be best performing method out of all 
+ three methods (String.Replace(), StringBuilder.Replace() and regex.replace()) in general usage. Refer here 
+ (https://blogs.msdn.microsoft.com/debuggingtoolbox/2008/04/02/comparing-regex-replace-string-replace-and-stringbuilder-  replace-which-has-better-performance/)
 
 Once I got the objects from CSV into the list of BondPoco object, I created two lists one for government and one for corporate bond.
 Then I looped through corporate bond list, and calculating the result for two coding challenges.
 
-`Coding challenge 1`: 
+# Coding challenge 1: 
 
 The first coding challenge required me to calculate the yield spread (return) between a corporate bond and its government bond benchmark.
 The sample input is:
@@ -172,7 +173,8 @@ The sample input is:
 Since, a government bond is a good benchmark if it is as close as possible to the corporate bond in terms of years to maturity (term). 
 It required me to calculate the closest government bond to the corporate bond in bond terms. 
 
-I created the function CalSpreadBenchmark that first determines the best candidate in terms of Bond terms for each corporate bond from 
+`CalSpreadBenchmark`
+Created the function CalSpreadBenchmark that first determines the best candidate in terms of Bond terms for each corporate bond from 
 the list of government bonds.After it locates the best candidate, the function outputs the ID of this best candidate Bond and calculates 
 the yield by subtracting its value from corporate bond's yield.
 
@@ -208,7 +210,7 @@ C7 G6 2.50%
 
 ```
 
-`Coding challenge 2`
+#Coding challenge 2:
 
 The second coding challenge required me to calculate the spread to the government bond curve for each corporate bond. 
 Since the corporate bond term is not exactly the same as its benchmark term, it required me to use linear interpolation to determin the spread to the curve.
@@ -227,7 +229,8 @@ The sample input for the challenge is:
 In `linear interpolation, the error is proportional to the square of the distance between the data points`, so it is important that for the government 
 bonds(one greater than corp and one lesser than corp bond) that are selected for the linear interpolation are nearest to the each corporate bond.
 
-I created the function closestBonds that return BondHolder object. It followed same logic as CalSpreadBenchmark function specified above. 
+`closestBonds`
+Created the function closestBonds that return BondHolder object. It followed same logic as CalSpreadBenchmark function specified above. 
 The time complexity for it is O(n). 
 
 Once I have selected the nearest bonds, I used the formula:
@@ -239,12 +242,13 @@ Y = ( ( X - X1 )( Y2 - Y1) / ( X2 - X1) ) + Y1
             X = Target X co-ordinate,
             Y = Interpolated Y co-ordinate. 
 ```    
-Then I created the function CalSpreadCurve that calculates result of spread to curve for a corporate bond by subtracting the 
+`CalSpreadCurve`
+Created the function CalSpreadCurve that calculates result of spread to curve for a corporate bond by subtracting the 
 bond term from the result of interpolation of two nearest government bonds. 
 
 Once it calculates the curve, it returns the value. The time complexity for this function is O(n).
 
-Also I am making the sure number resulted is rounded to 2 digits as required.
+Also I am making the sure number from the result is rounded to 2 digits as required.
 
 My output for this challenge is 
 
@@ -297,10 +301,9 @@ For testing these challenges, I created different tests.
   * I would have made tests more robust as right now they are hard-coded. I can use some class data and member data in xUnit to improve the code
     readability for my TestCode. 
   
-  * I would have automated Task capability provided by VS code for running automated tasks. I modified tasks.json but for some reason, it wasnt
-    running for my project. 
+  * I would have automated Task capability provided by VS code for running automated tasks. I modified tasks.json but for some reason, it wasnt running for my project. 
 
-  * Now for something Meta,  I would have to liked to submit pull-requests for committing this project.
+
   
    
 
