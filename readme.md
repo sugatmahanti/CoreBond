@@ -303,10 +303,7 @@ For testing these challenges, I created different tests.
   
   * I would have automated Task capability provided by VS code for running automated tasks. I modified tasks.json but for some reason, it wasnt running for my project. 
 
-
-  
    
-
 ## Built With
 
 * .NET Core Framework 
@@ -323,6 +320,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Awesome people who made ServiceStack library. 
 * Also https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test for giving a very good overview of testing 
   in .NET Core project.
+* People who gave me this interesting challenge to work on.   
 
 ## Author
 
