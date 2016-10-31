@@ -231,13 +231,14 @@ I created the function closestBonds that return BondHolder object. It followed s
 The time complexity for it is O(n). 
 
 Once I have selected the nearest bonds, I used the formula:
-    Y = ( ( X - X1 )( Y2 - Y1) / ( X2 - X1) ) + Y1 
+```
+Y = ( ( X - X1 )( Y2 - Y1) / ( X2 - X1) ) + Y1 
         Where,
             X1,Y1 = First co-ordinates,
             X2,Y2 = Second co-ordinates,
             X = Target X co-ordinate,
             Y = Interpolated Y co-ordinate. 
-    
+```    
 Then I created the function CalSpreadCurve that calculates result of spread to curve for a corporate bond by subtracting the 
 bond term from the result of interpolation of two nearest government bonds. 
 
