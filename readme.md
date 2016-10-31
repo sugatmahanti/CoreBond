@@ -32,7 +32,7 @@ After you have installed .NET Core, please download this repository and you shou
 ```
 It contains .vscode folder as well but I couldnt utilize it properly. More on this Tradeoffs section.
 
-### Prerequisites
+## Prerequisites
 
 You will need active internet connection and .NET Core framework installed on your machine to setup this project. 
 For detailed instructions regarding installing .NET Core framework on your machine(Windows, MacOSX or Linux) 
@@ -64,7 +64,7 @@ This installer will install the tools and put them on your PATH so you can run d
 Now you are set to go and move on to next section to installing and running the project. 
 
 
-### Installing and Running the Project
+## Installing and Running the Project
 
 `Building and Running the Project`
 
@@ -159,7 +159,7 @@ tests projects, but it will not restore NuGet packages.
 Once I got the objects from CSV into the list of BondPoco object, I created two lists one for government and one for corporate bond.
 Then I looped through corporate bond list, and calculating the result for two coding challenges.
 
-# Coding challenge 1: 
+## Coding challenge 1: 
 
 The first coding challenge required me to calculate the yield spread (return) between a corporate bond and its government bond benchmark.
 The sample input is:
@@ -210,7 +210,7 @@ C7 G6 2.50%
 
 ```
 
-#Coding challenge 2:
+## Coding challenge 2:
 
 The second coding challenge required me to calculate the spread to the government bond curve for each corporate bond. 
 Since the corporate bond term is not exactly the same as its benchmark term, it required me to use linear interpolation to determin the spread to the curve.
