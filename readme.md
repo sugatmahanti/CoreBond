@@ -2,7 +2,7 @@
 
 This projects deals with 2 coding challenges relating to benchmarking corporate bond yields. 
 
-* Created this project in new .NET Core framework using C# using just new Visual Studio Code editor on a Mac. 
+* Created this project in new .NET Core framework using C# using just new Visual Studio Code editor. 
 * Created unit tests for this project which tests different functions from the project. 
 * Used ServiceStack library for CSV import as it is one of high performance libraries and is free to use. 
 * Documented the code to the best of my ability. Though if I had more time, I would like to extract xml comments 
@@ -137,6 +137,11 @@ SUMMARY: Total: 1 targets, Passed: 1, Failed: 0.
 `Note`: You must run `dotnet restore` in the `BondSrc` directory before you can run
 the tests. `dotnet build` will follow the dependency and build both the library and unit
 tests projects, but it will not restore NuGet packages.
+
+## Dependencies
+* ServiceStack Library for CSV import.
+* Xunit library for testing .NET code.
+
 
 ## Coding challenges: Approach
 
@@ -289,17 +294,15 @@ For testing these challenges, I created different tests.
   If I had extra time on this project, I would have focused and improved these areas: 
 
   * I would have made proper front-end interface for my project. It will allow the user to upload CSV file and display the data in nicely formatted way. 
-    Also I would use external library like D3 JS (https://d3js.org/) to project the spread to curve for each corporate bond. 
-    I would have ported this project Asp.NET CORE Web API. It will not require much code changes.
-    The third-party library I have used ServiceStack is also compatible with it. I would have built the front-end interface with new JS framework Ember.JS.
+    Also I would use external library like D3 JS (https://d3js.org/) to project the results on a chart from coding challenges for each corporate bond. 
+    I would have ported this project Asp.NET CORE Web API. I would have built the front-end interface with  JS framework like Ember.JS.
   
-  * I would have to like to extract xml comments from my code and present it as a separate  document. I wanted to use 
-    DocFx library(https://dotnet.github.io/docfx/) that is used by .NET Core Team for documenting the code. 
+  * Once I have converted my code to .Net API, I would to like to extract xml comments from my code and present it as a separate site
+    with the help of  DocFx library(https://dotnet.github.io/docfx/) that is used by .NET Core Team for documenting the code. 
   
   * I would have focused on improving the efficiency of algorithms used in the functions and cleaned up the code in my project.  
 
-  * I would have made tests more robust as right now they are hard-coded. I can use some class data and member data in xUnit to improve the code
-    readability for my TestCode. 
+  * I would have improved quality of my tests as right now they are quite basic. I can use some class data and member data in xUnit to improve the code readability for my testCode. 
   
   * I would have automated Task capability provided by VS code for running automated tasks. I modified tasks.json but for some reason, it wasnt running for my project. 
 
