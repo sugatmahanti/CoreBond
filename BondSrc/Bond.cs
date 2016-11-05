@@ -68,13 +68,29 @@ namespace Bond
       }
 
   }
+    /// <ClassName> CompareBondType /ClassName>
+    /// <summary>
+    /// This class implements IComparer for Bond class elements for comparing BondTerms for Bond Objects
+    /// </summary>
+    public class CompareBondType : IComparer<Bond>
+    {
+        public int Compare(Bond bondA, Bond bondB)
+        {
+            if (bondA == bondB) return 0;
+            if (bondA == null) return -1;
+            if (bondB == null) return -1;
+
+            return bondA.bondTerm.CompareTo(bondB.bondTerm);
+        }
+    }
+
     /// <ClassName> BondRun</ClassName>
     ///  <ClassSummary>
     /// This class contains all the functions that takes required for outputting the results. 
     /// It takes the CSV file in the main function and executes two functions CalSpreadCurve and CalSpreadBenchmark to calculate 
     /// </ClassSummary>
     public static class BondRun {
-
+   
          /// <FunctionName> closestBonds </FunctionName>
          /// <FunctionSummary>
          /// This function outputs Bond Holder objects class which contains     
@@ -86,30 +102,22 @@ namespace Bond
          /// <param name="govBondList">List of Bonds whose type is government</param>
          /// <param name="corpBondYears">A double value representing bond years for a corporate Bond</param>
          /// <returns>BondHolder object that contains two specified objects</returns>
-         public static BondHolder closestBonds(List<Bond> govBondList, double corpBondYears) { 
+         public static BondHolder ClosestBonds(List<Bond> govBondList, Bond corpBond) { 
           
             Bond nearLesserBond =null;
             Bond nearGreaterBond =null;
-            double closeMaxVal = double.MaxValue;
-            double closeMinVal = double.MaxValue;
-            double diff=0;
-            double closeDiff=0;
-            foreach(Bond item in govBondList){
-                     diff= item.bondTerm-corpBondYears;
-                    if(diff> 0 && diff<closeMaxVal) {
-                        closeMaxVal = diff;
-                        nearGreaterBond=item;
-                     } 
-                     else if(diff<0){
-                         closeDiff = Math.Abs(diff);
-                         if(closeDiff< closeMinVal) {
-                            closeMinVal=closeDiff;
-                            nearLesserBond=item;
-                         }
-                     }
-                  
-                     
-               }
+
+
+            govBondList.Sort((x, y) => x.bondTerm.CompareTo(y.bondTerm));        //In-place Sorting 
+            CompareBondType compareBondType = new CompareBondType();
+            int index = govBondList.BinarySearch(corpBond, compareBondType);
+
+            int lesserBond = (~index) - 1;
+            nearLesserBond = govBondList[lesserBond];
+
+            int greaterBond = +~index;
+            nearGreaterBond = govBondList[greaterBond];
+          
             BondHolder resultBondList= new BondHolder(nearLesserBond,nearGreaterBond);
             return resultBondList;
 
@@ -131,7 +139,7 @@ namespace Bond
         /// <param name="govBond2X">X coordinate of 2nd Government Bond representing Bond Terms</param>
         /// <param name="govBond2Y">Y coordinate of 2nd Government Bond representing Bond yields</param>
         /// <returns>It returns the calculated value of interpolation</returns>
-        public static  double calInterpol(double corpBondYears, double govBond1X, double govBond1Y, double govBond2X, double govBond2Y)
+        public static  double CalInterpol(double corpBondYears, double govBond1X, double govBond1Y, double govBond2X, double govBond2Y)
         {
 
             if((govBond2X-govBond1X) ==0){
@@ -151,11 +159,11 @@ namespace Bond
         /// <returns></returns>
         public static double CalSpreadCurve(List<Bond> govBondList, Bond corpBond){ 
             
-        BondHolder closestBondsList = closestBonds(govBondList,corpBond.bondTerm);  
+        BondHolder closestBondsList = ClosestBonds(govBondList,corpBond);  
        
 
         return corpBond.bondYield - 
-            calInterpol(corpBond.bondTerm,
+            CalInterpol(corpBond.bondTerm,
             closestBondsList.closeLesserBond.bondTerm,
             closestBondsList.closeLesserBond.bondYield,
             closestBondsList.closeGreaterBond.bondTerm,
@@ -177,24 +185,21 @@ namespace Bond
          /// <param name="corpBond">Corporate Bond for which benchmark against </param>
          /// <returns>It prints the Bond ID and yield calculation. </returns>
          public static string CalSpreadBenchmark(List<Bond> govBondList, Bond corpBond){
-            double closestTerm = double.MaxValue;
-            double diff=0;
+
+            Bond resultBond = null;
+
+            BondHolder closestBondsList = ClosestBonds(govBondList, corpBond);
+            double lesserBondTerm = Math.Abs(closestBondsList.closeLesserBond.bondTerm - corpBond.bondTerm);
+            double greaterBondTerm = Math.Abs(closestBondsList.closeGreaterBond.bondTerm - corpBond.bondTerm);
+
+            if (lesserBondTerm < greaterBondTerm)
+                resultBond = closestBondsList.closeLesserBond;
+            else
+                resultBond = closestBondsList.closeGreaterBond;
+
+            string  resultValue = resultBond.bondID + " " + Math.Abs(corpBond.bondYield - resultBond.bondYield).ToString("N2") + "%";
            
-            StringBuilder resultValue  = new StringBuilder();
-            foreach( Bond bondItem in govBondList){
-                if(bondItem.bondTerm==corpBond.bondTerm){
-                    return bondItem.bondID+ Math.Abs(corpBond.bondYield-bondItem.bondYield);
-                }
-                diff= Math.Abs(bondItem.bondTerm-corpBond.bondTerm);
-                if(diff<closestTerm){
-                    closestTerm=diff;
-                    resultValue.Clear();
-                    
-                    resultValue.Append(bondItem.bondID + " " + Math.Abs(corpBond.bondYield-bondItem.bondYield).ToString("N2")+"%");               
-                }
-             }
-          
-             return resultValue.ToString();
+            return resultValue; 
 
         }
         /// <FunctionName> DeserializeCSVPoco </FunctionName>
@@ -238,9 +243,7 @@ namespace Bond
         List<Bond> corpBondList = new List<Bond>();
         Bond newItem =null;
         foreach(BondPoco item in bondList){
-
              newItem = new Bond(item);
-   
             if(newItem.bondType==BondConst.corp){
                 corpBondList.Add(newItem);
             }
@@ -268,12 +271,6 @@ namespace Bond
              
         }
         
-        
-
-  
-
-
-
 
         }
 
