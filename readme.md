@@ -1,4 +1,4 @@
-#### Note: Updated the code by improving the efficiency of algorithms used in the methods and cleaned up the code. Have used ~~strikethrogh~~ to depict old comments in this readme.
+#### Note: Updated the code by improving the efficiency of algorithms used in the methods and cleaned up the code.
 
 # Core Bond
 
@@ -196,11 +196,6 @@ The function uses the list of government bonds and given corporate bond as input
 It uses ClosestBonds to determine the 2 best candidates one lesser or one greater than current corporate bond based on bond terms. 
 I calculate the difference and whichever is closest is selected as the best candidate in terms of Bond terms. 
 
-~~It loops through the list of govt bonds and 
-keeps track of difference of bond terms between the current govt bond and given corp bond. It also keeps track of current return (yield)
-and the Bond ID in a StringBuilder. I used StringBuilder for better performance as String are immutable in C#. 
-Pleas refer here for more info:
-(http://stackoverflow.com/questions/4274193/what-is-the-difference-between-a-mutable-and-immutable-string-in-c)
 
 Since I am constantly updating my string value to keep track of Bond ID and current return, stringbuilder will use existing string pool 
 instead of creating new one like normal Strings in C#. For large number of operations, the performance difference can be quite significant. ~~
@@ -246,10 +241,6 @@ The sample input for the challenge is:
 
 In `linear interpolation, the error is proportional to the square of the distance between the data points`, so it is important that for the government 
 bonds(one greater than corp and one lesser than corp bond) that are selected for the linear interpolation are nearest to the each corporate bond.
-
-~~`closestBonds`
-Created the function closestBonds that return BondHolder object. It followed same logic as CalSpreadBenchmark function specified above. 
-The time complexity for it is O(n).~~
 
 I use the ClosestBonds method described above to get the best candidates for linear Interpolation , I use the formula for the same:
 ```
@@ -313,7 +304,7 @@ For testing these challenges, I created different tests.
   * Once I have converted my code to .Net API, I would to like to extract xml comments from my code and present it as a separate site
     with the help of  DocFx library(https://dotnet.github.io/docfx/) that is used by .NET Core Team for documenting the code. 
   
- *  ~~I would have focused on improving the efficiency of algorithms used in the functions and cleaned up the code in my project. ~~  Improved the efficiency of algorithms
+ *  ~~I would have focused on improving the efficiency of algorithms used in the functions and cleaned up the code in my project.~~ Improved the efficiency of algorithms
 
   * I would have improved quality of my tests as right now they are quite basic. I can use some class data and member data in xUnit to improve the code readability for my testCode. 
   
