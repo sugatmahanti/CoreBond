@@ -65,7 +65,7 @@ namespace BondTests
          public void ClosestBondsTest(string input){
              Bond.Bond  sampleInput1 = new Bond.Bond("C2",Bond.BondConst.corp,15.2,8.30);
              List<Bond.Bond > govBondList = LoadBondObjects();
-             Bond.BondHolder closestBonds = Bond.BondRun.closestBonds(govBondList,sampleInput1.bondTerm);
+             Bond.BondHolder closestBonds = Bond.BondRun.ClosestBonds(govBondList,sampleInput1);
              string actual =   closestBonds.closeLesserBond.bondID.ToString() + closestBonds.closeGreaterBond.bondID.ToString();
              Assert.True(input.Equals(actual));
          }

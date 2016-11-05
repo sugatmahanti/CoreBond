@@ -1,3 +1,5 @@
+#### Note: Updated the code by improving the efficiency of algorithms used in the methods and cleaned up the code. Have used ~~strikethrogh~~ to depict old comments in this readme.
+
 # Core Bond
 
 This projects deals with 2 coding challenges relating to benchmarking corporate bond yields. 
@@ -65,8 +67,6 @@ Now you are set to go and move on to next section to installing and running the 
 
 
 ## Installing and Running the Project
-
-`Building and Running the Project`
 
 Download the code from this repository and follow these instructions. 
 If you have a csv file for processing input, please include it in the `BondSrc` directory. If you do not provide one,
@@ -159,10 +159,18 @@ tests projects, but it will not restore NuGet packages.
 
  I used String.Replace function to take out `years` and `%` from CSV as it seems to be best performing method out of all 
  three methods (String.Replace(), StringBuilder.Replace() and regex.replace()) in general usage. Refer here 
- (https://blogs.msdn.microsoft.com/debuggingtoolbox/2008/04/02/comparing-regex-replace-string-replace-and-stringbuilder-  replace-which-has-better-performance/)
+ (https://blogs.msdn.microsoft.com/debuggingtoolbox/2008/04/02/comparing-regex-replace-string-replace-and-stringbuilder-  replace-which-has-better-performance/)~~
+
 
 Once I got the objects from CSV into the list of BondPoco object, I created two lists one for government and one for corporate bond.
 Then I looped through corporate bond list, and calculating the result for two coding challenges.
+
+ * Created BondHolder class for easy distribution of government bond objects.
+ * Created ClosestBonds method that takes list of government bonds and the given corporate bond and uses Binary Search to find the candidates in an extremely fast manner.
+ * Since binary search needs the list to be sorted, I created custom class that implements IComparer interface for comparing bond terms in Bond Objects. 
+ Once I have that class, 
+ * I used exisiting List function that takes the list and custom implementation of IComparer inherited class which uses QuickSort for large number of items. 
+ * I use binary search for finding the items one of which is greater than the item and other one lesser than the item. 
 
 ## Coding challenge 1: 
 
@@ -183,19 +191,24 @@ Created the function CalSpreadBenchmark that first determines the best candidate
 the list of government bonds.After it locates the best candidate, the function outputs the ID of this best candidate Bond and calculates 
 the yield by subtracting its value from corporate bond's yield.
 
-The function uses the list of government bonds and given corporate bond as input. It loops through the list of govt bonds and 
+The function uses the list of government bonds and given corporate bond as input. 
+
+It uses ClosestBonds to determine the 2 best candidates one lesser or one greater than current corporate bond based on bond terms. 
+I calculate the difference and whichever is closest is selected as the best candidate in terms of Bond terms. 
+
+~~It loops through the list of govt bonds and 
 keeps track of difference of bond terms between the current govt bond and given corp bond. It also keeps track of current return (yield)
 and the Bond ID in a StringBuilder. I used StringBuilder for better performance as String are immutable in C#. 
 Pleas refer here for more info:
 (http://stackoverflow.com/questions/4274193/what-is-the-difference-between-a-mutable-and-immutable-string-in-c)
 
 Since I am constantly updating my string value to keep track of Bond ID and current return, stringbuilder will use existing string pool 
-instead of creating new one like normal Strings in C#. For large number of operations, the performance difference can be quite significant. 
+instead of creating new one like normal Strings in C#. For large number of operations, the performance difference can be quite significant. ~~
 
 After it determines the best candidate, it outputs the result. However, if the corp bond matches any value in terms of govt bond, it will return
 that ID and difference.
 
-The function outputs the result in O(n) time where n is number of elements in the list. 
+The function outputs the result in O(nlog(n)) time where n is number of elements in the list. 
 
 Also I am making the sure number resulted is rounded to 2 digits as required.
 
@@ -234,11 +247,11 @@ The sample input for the challenge is:
 In `linear interpolation, the error is proportional to the square of the distance between the data points`, so it is important that for the government 
 bonds(one greater than corp and one lesser than corp bond) that are selected for the linear interpolation are nearest to the each corporate bond.
 
-`closestBonds`
+~~`closestBonds`
 Created the function closestBonds that return BondHolder object. It followed same logic as CalSpreadBenchmark function specified above. 
-The time complexity for it is O(n). 
+The time complexity for it is O(n).~~
 
-Once I have selected the nearest bonds, I used the formula:
+I use the ClosestBonds method described above to get the best candidates for linear Interpolation , I use the formula for the same:
 ```
 Y = ( ( X - X1 )( Y2 - Y1) / ( X2 - X1) ) + Y1 
         Where,
@@ -300,7 +313,7 @@ For testing these challenges, I created different tests.
   * Once I have converted my code to .Net API, I would to like to extract xml comments from my code and present it as a separate site
     with the help of  DocFx library(https://dotnet.github.io/docfx/) that is used by .NET Core Team for documenting the code. 
   
-  * I would have focused on improving the efficiency of algorithms used in the functions and cleaned up the code in my project.  
+ *  ~~I would have focused on improving the efficiency of algorithms used in the functions and cleaned up the code in my project. ~~  Improved the efficiency of algorithms
 
   * I would have improved quality of my tests as right now they are quite basic. I can use some class data and member data in xUnit to improve the code readability for my testCode. 
   

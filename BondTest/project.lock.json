@@ -2815,6 +2815,12 @@
           "Microsoft.NETCore.App": "1.0.0",
           "ServiceStack.Common.Core": "1.0.18",
           "ServiceStack.Interfaces.Core": "1.0.18"
+        },
+        "compile": {
+          "netcoreapp1.0/BondSrc.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.0/BondSrc.dll": {}
         }
       }
     }
@@ -8259,7 +8265,8 @@
     },
     "BondSrc/1.0.0": {
       "type": "project",
-      "path": "../BondSrc/project.json"
+      "path": "../BondSrc/project.json",
+      "msbuildProject": "../BondSrc/BondSrc.xproj"
     }
   },
   "projectFileDependencyGroups": {

@@ -8,8 +8,8 @@
 -debug:portable
 -nostdlib
 -nologo
-"/Users/smahanti/Documents/CoreBond/BondTest/obj/Debug/netcoreapp1.0/dotnet-compile.assemblyinfo.cs"
--out:"/Users/smahanti/Documents/CoreBond/BondTest/bin/Debug/netcoreapp1.0/BondTest.dll"
+"/Users/smahanti/Documents/CoreBondV2/CoreBond-faster/BondTest/obj/Debug/netcoreapp1.0/dotnet-compile.assemblyinfo.cs"
+-out:"/Users/smahanti/Documents/CoreBondV2/CoreBond-faster/BondTest/bin/Debug/netcoreapp1.0/BondTest.dll"
 -r:"/Users/smahanti/.nuget/packages/dotnet-test-xunit/1.0.0-rc2-build10025/lib/netcoreapp1.0/dotnet-test-xunit.dll"
 -r:"/Users/smahanti/.nuget/packages/Microsoft.CSharp/4.0.1/ref/netstandard1.0/Microsoft.CSharp.dll"
 -r:"/Users/smahanti/.nuget/packages/Microsoft.DiaSymReader/1.0.6/lib/portable-net45+win8/Microsoft.DiaSymReader.dll"
@@ -115,5 +115,5 @@
 -r:"/Users/smahanti/.nuget/packages/xunit.extensibility.execution/2.1.0/lib/dotnet/xunit.execution.dotnet.dll"
 -r:"/Users/smahanti/.nuget/packages/xunit.runner.reporters/2.1.0/lib/dotnet/xunit.runner.reporters.dotnet.dll"
 -r:"/Users/smahanti/.nuget/packages/xunit.runner.utility/2.1.0/lib/dotnet/xunit.runner.utility.dotnet.dll"
--r:"/Users/smahanti/Documents/CoreBond/BondSrc/bin/Debug/netcoreapp1.0/BondSrc.dll"
-"/Users/smahanti/Documents/CoreBond/BondTest/BondTests.cs"
+-r:"/Users/smahanti/Documents/CoreBondV2/CoreBond-faster/BondSrc/bin/Debug/netcoreapp1.0/BondSrc.dll"
+"/Users/smahanti/Documents/CoreBondV2/CoreBond-faster/BondTest/BondTests.cs"

@@ -1,5 +1,5 @@
---temp-output:/Users/smahanti/Documents/CoreBond/BondSrc/obj/Debug/netcoreapp1.0/
---out:/Users/smahanti/Documents/CoreBond/BondSrc/bin/Debug/netcoreapp1.0/BondSrc.dll
+--temp-output:/Users/smahanti/Documents/CoreBondV2/CoreBond-faster/BondSrc/obj/Debug/netcoreapp1.0/
+--out:/Users/smahanti/Documents/CoreBondV2/CoreBond-faster/BondSrc/bin/Debug/netcoreapp1.0/BondSrc.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -98,4 +98,4 @@
 --reference:/Users/smahanti/.nuget/packages/System.Threading.Timer/4.0.1/ref/netstandard1.2/System.Threading.Timer.dll
 --reference:/Users/smahanti/.nuget/packages/System.Xml.ReaderWriter/4.0.11/ref/netstandard1.3/System.Xml.ReaderWriter.dll
 --reference:/Users/smahanti/.nuget/packages/System.Xml.XDocument/4.0.11/ref/netstandard1.3/System.Xml.XDocument.dll
-/Users/smahanti/Documents/CoreBond/BondSrc/Bond.cs
+/Users/smahanti/Documents/CoreBondV2/CoreBond-faster/BondSrc/Bond.cs
