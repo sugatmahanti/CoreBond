@@ -297,18 +297,17 @@ For testing these challenges, I created different tests.
 
   If I had extra time on this project, I would have focused and improved these areas: 
 
-  * I would have made proper front-end interface for my project. It will allow the user to upload CSV file and display the data in nicely formatted way. 
+* I would have made proper front-end interface for my project. It will allow the user to upload CSV file and display the data in nicely formatted way. 
     Also I would use external library like D3 JS (https://d3js.org/) to project the results on a chart from coding challenges for each corporate bond. 
     I would have ported this project Asp.NET CORE Web API. I would have built the front-end interface with  JS framework like Ember.JS.
   
-  * Once I have converted my code to .Net API, I would to like to extract xml comments from my code and present it as a separate site
-    with the help of  DocFx library(https://dotnet.github.io/docfx/) that is used by .NET Core Team for documenting the code. 
+* Once I have converted my code to .Net API, I would to like to extract xml comments from my code and present it as a separate site with the help of  DocFx library(https://dotnet.github.io/docfx/) that is used by .NET Core Team for documenting the code. 
   
- *  ~~I would have focused on improving the efficiency of algorithms used in the functions and cleaned up the code in my project.~~ Improved the efficiency of algorithms
+* Improved the efficiency of algorithms ~~I would have focused on improving the efficiency of algorithms used in the functions and cleaned up the code in my project.~~ 
 
-  * I would have improved quality of my tests as right now they are quite basic. I can use some class data and member data in xUnit to improve the code readability for my testCode. 
+* I would have improved quality of my tests as right now they are quite basic. I can use some class data and member data in xUnit to improve the code readability for my testCode. 
   
-  * I would have automated Task capability provided by VS code for running automated tasks. I modified tasks.json but for some reason, it wasnt running for my project. 
+* I would have automated Task capability provided by VS code for running automated tasks. I modified tasks.json but for some reason, it wasnt running for my project. 
 
    
 ## Built With
